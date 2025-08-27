@@ -1,0 +1,37 @@
+services:
+  ouvidoria:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ouvidoria-data:/app
+    networks:
+      - internal-network
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    environment:
+      - DB_HOST=postgres
+      - DB_USER=ouvidoria
+      - DB_PASSWORD=ouvidoria123
+      - DB_NAME=ouvidoria
+      - DB_PORT=5432
+  postgres:
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=ouvidoria
+      - POSTGRES_PASSWORD=ouvidoria123
+      - POSTGRES_DB=ouvidoria
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - internal-network
+    restart: unless-stopped
+networks:
+  internal-network:
+    driver: bridge
+volumes:
+  ouvidoria-data:
+  postgres-data:

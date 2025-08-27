@@ -1,0 +1,4 @@
+node_modules/
+ouvidoria.db
+package-lock.json
+.env

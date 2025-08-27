@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Ouvidoria - Grupo Carper</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header com logo -->
+        <header class="header">
+            <div class="logo-container">
+                <div class="logo-section">
+                    <div class="logo">
+                        <img src="cicocal-logo.png" alt="Logo Cicopal">
+                    </div>
+                    <div class="logo-name"></div>
+                </div>
+                
+                <div class="title-section">
+                    <h1 class="system-title">SISTEMA DE OUVIDORIA</h1>
+                    <p class="system-subtitle">sua voz é importante</p>
+                </div>
+            </div>
+        </header>
+
+        <div id="success-alert" class="alert alert-success"></div>
+        <div id="error-alert" class="alert alert-error"></div>
+        <div id="login-error" class="alert alert-error"></div>
+        <div id="register-success" class="alert alert-success"></div>
+        <div id="register-error" class="alert alert-error"></div>
+
+        <!-- Página inicial -->
+        <div id="home-page" class="page active">
+            <div class="card">
+                <h2><i class="fas fa-headset"></i> Bem-vindo ao Sistema de Ouvidoria</h2>
+                <p>Escolha uma opção:</p>
+                <div class="home-options">
+                    <button id="login-btn" class="btn-primary">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </button>
+                    <button id="register-btn" class="btn-primary">
+                        <i class="fas fa-user-plus"></i> Cadastro
+                    </button>
+                    <button id="config-btn" class="btn-primary">
+                        <i class="fas fa-cog"></i> Configuração
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página de login -->
+        <div id="login-page" class="page">
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-sign-in-alt"></i> Login</h2>
+                    <button id="back-from-login" class="btn-secondary">Voltar</button>
+                </div>
+                <form id="login-form" class="login-form">
+                    <div class="form-group">
+                        <label for="username">E-mail *</label>
+                        <input type="text" id="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Senha *</label>
+                        <input type="password" id="password" required>
+                    </div>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-unlock"></i> Acessar
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Página de cadastro -->
+        <div id="register-page" class="page">
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-user-plus"></i> Cadastro</h2>
+                    <button id="back-from-register" class="btn-secondary">Voltar</button>
+                </div>
+                <form id="register-user-form">
+                    <div class="form-group">
+                        <label for="register-name">Nome *</label>
+                        <input type="text" id="register-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email">E-mail *</label>
+                        <input type="email" id="register-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Senha *</label>
+                        <input type="password" id="register-password" required>
+                    </div>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-user-plus"></i> Cadastrar
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Página de usuário logado -->
+        <div id="user-page" class="page">
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-user-circle"></i> Painel do Usuário</h2>
+                    <button id="logout-btn" class="btn-danger">
+                        <i class="fas fa-sign-out-alt"></i> Sair
+                    </button>
+                </div>
+                <div id="user-options" class="home-options"></div>
+            </div>
+        </div>
+
+        <!-- Página de reclamação -->
+        <div id="complaint-page" class="page">
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-exclamation-circle"></i> Nova Reclamação</h2>
+                    <button id="back-from-complaint" class="btn-secondary">Voltar</button>
+                </div>
+                <form id="complaint-form">
+                    <div class="form-group">
+                        <label for="name">Nome *</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail *</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="position">Cargo *</label>
+                        <input type="text" id="position" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sector">Setor *</label>
+                        <select id="sector" required>
+                            <option value="Recursos Humanos">Gente e Gestão</option>
+                            <option value="Financeiro">Financeiro</option>
+                            <option value="TI">Tecnologia da Informação</option>
+                            <option value="Produção">Produção</option>
+                            <option value="Comercial">Comercial</option>
+                            <option value="Qualidade">Qualidade</option>
+                            <option value="Industrial">Industrial</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="complaint">Reclamação *</label>
+                        <textarea id="complaint" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="related-person">Pessoa Envolvida</label>
+                        <input type="text" id="related-person">
+                    </div>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-paper-plane"></i> Enviar
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Página de agradecimento -->
+        <div id="thank-you-page" class="page">
+            <div class="card thank-you-message">
+                <span class="thank-you-icon">✔</span>
+                <h2 class="thank-you-title">Reclamação Enviada</h2>
+                <p class="thank-you-text">Obrigado por registrar sua reclamação. Ela será analisada em breve.</p>
+                <button id="back-from-thankyou" class="btn-secondary">Voltar</button>
+            </div>
+        </div>
+
+        <!-- Página de reclamações do usuário -->
+        <div id="my-complaints-page" class="page">
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-list"></i> Minhas Reclamações</h2>
+                    <button id="back-from-my-complaints" class="btn-secondary">Voltar</button>
+                </div>
+                <div class="filters">
+                    <select id="filter-status">
+                        <option value="todos">Todos os status</option>
+                        <option value="pendente">Pendente</option>
+                        <option value="andamento">Em andamento</option>
+                        <option value="resolvido">Resolvido</option>
+                    </select>
+                    <select id="filter-sector">
+                        <option value="todos">Todos os setores</option>
+                        <option value="Recursos Humanos">Recursos Humanos</option>
+                        <option value="Financeiro">Financeiro</option>
+                        <option value="TI">Tecnologia da Informação</option>
+                        <option value="Produção">Produção</option>
+                        <option value="Comercial">Comercial</option>
+                        <option value="Qualidade">Qualidade</option>
+                        <option value="Industrial">Industrial</option>
+                    </select>
+                    <input type="text" id="search" placeholder="Buscar...">
+                </div>
+                <div id="my-complaints-list"></div>
+            </div>
+        </div>
+
+        <!-- Página de ouvidor -->
+        <div id="ouvidor-page" class="page">
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-headset"></i> Ouvir Reclamações</h2>
+                    <button id="back-from-ouvidor" class="btn-secondary">Voltar</button>
+                </div>
+                <div class="filters">
+                    <select id="ouvidor-filter-status">
+                        <option value="todos">Todos os status</option>
+                        <option value="pendente">Pendente</option>
+                        <option value="andamento">Em andamento</option>
+                        <option value="resolvido">Resolvido</option>
+                    </select>
+                    <select id="ouvidor-filter-sector">
+                        <option value="todos">Todos os setores</option>
+                        <option value="Recursos Humanos">Recursos Humanos</option>
+                        <option value="Financeiro">Financeiro</option>
+                        <option value="TI">Tecnologia da Informação</option>
+                        <option value="Produção">Produção</option>
+                        <option value="Comercial">Comercial</option>
+                        <option value="Qualidade">Qualidade</option>
+                        <option value="Industrial">Industrial</option>
+                    </select>
+                    <input type="text" id="ouvidor-search" placeholder="Buscar...">
+                </div>
+                <div id="ouvidor-complaints-list"></div>
+            </div>
+        </div>
+
+        <!-- Página de configurações -->
+        <div id="config-page" class="page">
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-cog"></i> Configurações do Sistema</h2>
+                    <button id="back-from-config" class="btn-secondary">Voltar</button>
+                </div>
+                <div class="server-info">
+                    <h3>Informações para Hospedagem</h3>
+                    <p>Para hospedar este sistema em sua rede interna:</p>
+                    <ol>
+                        <li>Salve este código em um arquivo HTML (ex: ouvidoria.html)</li>
+                        <li>Instale o Node.js em seu servidor</li>
+                        <li>Instale as dependências: <code>npm install</code></li>
+                        <li>Execute o servidor: <code>node server.js</code></li>
+                        <li>Acesse via: <code>http://seu-ip:3000</code></li>
+                        <li>Para usar a rede interna, configure no DNS interno da sua rede</li>
+                    </ol>
+                    <h3>Backup de Dados</h3>
+                    <p>Os dados são armazenados no banco SQLite (ouvidoria.db).</p>
+                    <button id="backup-btn" class="btn-secondary">
+                        <i class="fas fa-download"></i> Fazer Backup
+                    </button>
+                    <button id="restore-btn" class="btn-secondary">
+                        <i class="fas fa-upload"></i> Restaurar Dados
+                    </button>
+                    <input type="file" id="restore-file" accept=".json" style="display: none;">
+                </div>
+            </div>
+        </div>
+
+        <!-- Página de administração de usuários -->
+        <div id="admin-users-page" class="page">
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-users-cog"></i> Gerenciar Usuários</h2>
+                    <button id="back-from-admin-users" class="btn-secondary">Voltar</button>
+                </div>
+                <div id="users-list"></div>
+            </div>
+        </div>
+
+        <!-- Modal para edição de usuário -->
+        <div id="edit-user-modal" class="modal">
+            <div class="modal-content">
+                <span id="close-modal" class="close">&times;</span>
+                <h3>Editar Usuário</h3>
+                <form id="edit-user-form">
+                    <div class="form-group">
+                        <label for="edit-name">Nome *</label>
+                        <input type="text" id="edit-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-email">E-mail *</label>
+                        <input type="email" id="edit-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-password">Nova Senha (opcional)</label>
+                        <input type="password" id="edit-password">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-role">Perfil *</label>
+                        <select id="edit-role" required>
+                            <option value="reclamador">Reclamador</option>
+                            <option value="ouvidor">Ouvidor</option>
+                            <option value="configurador">Configurador</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-primary">Salvar</button>
+                    <button type="button" id="cancel-edit-btn" class="btn-secondary">Cancelar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
